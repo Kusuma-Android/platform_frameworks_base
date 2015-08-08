@@ -5538,6 +5538,12 @@ public final class Settings {
          */
 
         /**
+         * Three Finger Screenshot Gesture from OEM
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -5548,6 +5554,8 @@ public final class Settings {
          */
         public static final String[] LEGACY_RESTORE_SETTINGS = {
         };
+
+        /**
 
         /**
          * These are all public system settings
