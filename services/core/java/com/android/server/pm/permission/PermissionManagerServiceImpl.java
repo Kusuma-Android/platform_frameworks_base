@@ -2524,7 +2524,7 @@ public class PermissionManagerServiceImpl implements PermissionManagerServiceInt
     }
 
     public static boolean isSpecialRuntimePermission(final String permission) {
-        return false;
+        return Manifest.permission.OTHER_SENSORS.equals(permission);
     }
 
     /**
