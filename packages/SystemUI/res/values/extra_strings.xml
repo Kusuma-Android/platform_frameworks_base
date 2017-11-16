@@ -18,4 +18,7 @@
     <!-- Screenshot Tile -->
     <string name="screenshot_long_press">Long press for partial screenshot</string>
     <string name="quick_settings_screenshot_start">@string/quick_settings_screen_record_start</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
 </resources>
