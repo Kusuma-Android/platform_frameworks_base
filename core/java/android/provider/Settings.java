@@ -5595,6 +5595,12 @@ public final class Settings {
         public static final String USE_POWER_MENU_ON_SECURE_KEYGUARD = "use_power_menu_on_secure_keyguard";
 
         /**
+         * Use doubletap as doze pulse triggers
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
