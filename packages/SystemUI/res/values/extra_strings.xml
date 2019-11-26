@@ -35,4 +35,7 @@
 
     <!-- Network traffic -->
     <string name="network_traffic_title">Network traffic</string>
+
+    <!-- Data switch tile -->
+    <string name="qs_data_switch_label">Mobile data preference</string>
 </resources>
