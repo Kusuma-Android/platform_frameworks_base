@@ -17,4 +17,7 @@
 <resources>
     <!-- PropImitationHooks -->
     <java-symbol type="string" name="config_stockFingerprint" />
+
+    <!-- For dynamic default font styles -->
+    <java-symbol type="string" name="config_bodyFontFamily" />
 </resources>
