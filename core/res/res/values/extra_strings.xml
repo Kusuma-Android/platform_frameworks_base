@@ -14,11 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <!-- Build fingerprint from the stock ROM -->
-    <string name="config_stockFingerprint" translatable="false"></string>
-
-    <!-- List of system apps that are allowed to be locked with app lock.
-         Use with extreme caution. -->
-    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- App lock -->
+    <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 </resources>
