@@ -46,6 +46,7 @@ import android.os.UserHandle
 import android.util.ArrayMap
 import android.util.ArraySet
 import android.util.Log
+import android.util.PackageUtils
 import android.util.Slog
 
 import com.android.internal.R
@@ -478,6 +479,7 @@ class AppLockManagerService(
                 userId
             )
             if (!aInfo.isSystemApp()) return
+            if (PackageUtils.launchablePackages(context).contains(pkg)) return
             if (!whiteListedSystemApps.contains(pkg))
                 throw IllegalArgumentException("System package $pkg is not whitelisted")
         } catch(e: PackageManager.NameNotFoundException) {
