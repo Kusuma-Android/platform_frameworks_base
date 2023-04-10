@@ -16,14 +16,33 @@
 package com.android.systemui.tuner;
 
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
+import android.view.MenuItem;
 
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
 
 public class StatusBarTuner extends PreferenceFragment {
+
+    private static final String NETWORK_TRAFFIC = "network_traffic_enabled";
+
+    private SwitchPreference mNetMonitor;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
+        mNetMonitor = (SwitchPreference) findPreference(NETWORK_TRAFFIC);
+        mNetMonitor.setChecked(Settings.System.getIntForUser(getActivity().getContentResolver(),
+            Settings.System.NETWORK_TRAFFIC_ENABLED, 0,
+            UserHandle.USER_CURRENT) == 1);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -40,5 +59,17 @@ public class StatusBarTuner extends PreferenceFragment {
     public void onPause() {
         super.onPause();
         MetricsLogger.visibility(getContext(), MetricsEvent.TUNER, false);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference == mNetMonitor) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_ENABLED, checked ? 1 : 0,
+                    UserHandle.USER_CURRENT);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 }

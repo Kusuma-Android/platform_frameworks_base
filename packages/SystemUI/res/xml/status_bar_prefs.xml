@@ -98,6 +98,12 @@
         android:key="roaming"
         android:title="@string/status_bar_roaming" />
 
+    <SwitchPreference
+        android:key="network_traffic_enabled"
+        android:title="@string/network_traffic_title"
+        android:icon="@drawable/ic_statusbar_network_monitor"
+        android:defaultValue="false" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_vpn"
         android:key="vpn"
