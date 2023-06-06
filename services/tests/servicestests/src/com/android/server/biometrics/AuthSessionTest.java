@@ -90,6 +90,7 @@ public class AuthSessionTest {
     @Mock private IBiometricSysuiReceiver mSysuiReceiver;
     @Mock private KeyStore mKeyStore;
     @Mock private AuthSession.ClientDeathReceiver mClientDeathReceiver;
+    @Mock BiometricSensorPrivacy mBiometricSensorPrivacy;
 
     private Random mRandom;
     private IBinder mToken;
@@ -426,7 +427,8 @@ public class AuthSessionTest {
                 promptInfo,
                 TEST_PACKAGE,
                 checkDevicePolicyManager,
-                mContext);
+                mContext,
+                mBiometricSensorPrivacy);
     }
 
     private AuthSession createAuthSession(List<BiometricSensor> sensors,
