@@ -368,7 +368,21 @@ public class DozeTriggers implements DozeMachine.Part {
         return mKeyguardStateController.isOccluded();
     }
 
+    private boolean dropForAmbient(@DozeLog.Reason int reason) {
+        final DozeMachine.State state = mMachine.getState();
+        if (!state.isAlwaysOn() && state != DozeMachine.State.DOZE_PULSING &&
+                state != DozeMachine.State.DOZE_PULSING_BRIGHT)
+            return false;
+        switch (reason) {
+            case DozeLog.REASON_SENSOR_DOUBLE_TAP:
+                return !mConfig.doubleTapGestureOnAmbient(mUserTracker.getUserId());
+        }
+        return false;
+    }
+
     private void gentleWakeUp(@DozeLog.Reason int reason) {
+        if (dropForAmbient(reason)) return;
+
         if (reason == DozeLog.REASON_SENSOR_PICKUP &&
             mConfig.pickupGestureAmbient(UserHandle.USER_CURRENT) ||
             reason == DozeLog.REASON_SENSOR_DOUBLE_TAP

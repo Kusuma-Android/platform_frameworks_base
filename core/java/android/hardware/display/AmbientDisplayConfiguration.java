@@ -148,6 +148,12 @@ public class AmbientDisplayConfiguration {
     }
 
     /** @hide */
+    public boolean doubleTapGestureOnAmbient(int user) {
+        return !doubleTapGestureAmbient(user)
+                && doubleTapGestureEnabled(user) && pulseOnNotificationEnabled(user);
+    }
+
+    /** @hide */
     public boolean quickPickupSensorEnabled(int user) {
         return boolSettingDefaultOn(Settings.Secure.DOZE_QUICK_PICKUP_GESTURE, user)
                 && !TextUtils.isEmpty(quickPickupSensorType())
