@@ -1330,6 +1330,12 @@
     <!-- Name of the data saver status bar icon. -->
     <string name="status_bar_data_saver">Data saver</string>
 
+    <!-- Name of the HD calling status bar icon. -->
+    <string name="status_bar_hd_calling">VoLTE/VoNR</string>
+
+    <!-- Name of the VoWiFi status bar icon. -->
+    <string name="status_bar_vowifi">VoWiFi</string>
+
     <!-- Wallet strings -->
     <!-- Wallet empty state, title [CHAR LIMIT=32] -->
     <string name="wallet_title">Wallet</string>

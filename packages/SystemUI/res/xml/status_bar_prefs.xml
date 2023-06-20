@@ -87,6 +87,11 @@
         android:title="@string/quick_settings_wifi_label" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@drawable/ic_statusbar_vowifi"
+        android:key="vowifi"
+        android:title="@string/status_bar_vowifi" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_ethernet"
         android:key="ethernet"
         android:title="@string/status_bar_ethernet" />
@@ -95,6 +100,11 @@
         android:icon="@drawable/ic_statusbar_mobile_network"
         android:key="mobile"
         android:title="@string/quick_settings_cellular_detail_title" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@drawable/ic_statusbar_hd_calling"
+        android:key="hd_calling"
+        android:title="@string/status_bar_hd_calling" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_roaming"
