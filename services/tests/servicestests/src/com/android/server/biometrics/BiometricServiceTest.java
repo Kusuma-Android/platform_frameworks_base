@@ -129,6 +129,8 @@ public class BiometricServiceTest {
     ITrustManager mTrustManager;
     @Mock
     DevicePolicyManager mDevicePolicyManager;
+    @Mock
+    private BiometricCameraManager mBiometricCameraManager;
 
     @Before
     public void setUp() {
@@ -152,6 +154,7 @@ public class BiometricServiceTest {
         when(mInjector.getTrustManager()).thenReturn(mTrustManager);
         when(mInjector.getDevicePolicyManager(any())).thenReturn(mDevicePolicyManager);
         when(mInjector.getRequestGenerator()).thenReturn(() -> TEST_REQUEST_ID);
+        when(mInjector.getBiometricCameraManager(any())).thenReturn(mBiometricCameraManager);
 
         when(mResources.getString(R.string.biometric_error_hw_unavailable))
                 .thenReturn(ERROR_HW_UNAVAILABLE);
