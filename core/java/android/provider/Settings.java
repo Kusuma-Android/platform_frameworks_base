@@ -3853,7 +3853,7 @@ public final class Settings {
          * or not a valid integer.
          */
         public static int getInt(ContentResolver cr, String name, int def) {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             return getIntForUser(cr, name, def, cr.getUserId());
@@ -3886,7 +3886,7 @@ public final class Settings {
          */
         public static int getInt(ContentResolver cr, String name)
                 throws SettingNotFoundException {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             return getIntForUser(cr, name, cr.getUserId());
@@ -6452,7 +6452,7 @@ public final class Settings {
          * or not a valid integer.
          */
         public static int getInt(ContentResolver cr, String name, int def) {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             return getIntForUser(cr, name, def, cr.getUserId());
@@ -6485,7 +6485,7 @@ public final class Settings {
          */
         public static int getInt(ContentResolver cr, String name)
                 throws SettingNotFoundException {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             return getIntForUser(cr, name, cr.getUserId());
@@ -16470,7 +16470,7 @@ public final class Settings {
          * or not a valid integer.
          */
         public static int getInt(ContentResolver cr, String name, int def) {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             String v = getString(cr, name);
@@ -16497,7 +16497,7 @@ public final class Settings {
          */
         public static int getInt(ContentResolver cr, String name)
                 throws SettingNotFoundException {
-            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr.getCallingContext(), cr.getPackageName(), name)) {
+            if (HideDeveloperStatusUtils.shouldHideDevStatus(cr, cr.getPackageName(), name)) {
                 return 0 /* Disabled */;
             }
             String v = getString(cr, name);
