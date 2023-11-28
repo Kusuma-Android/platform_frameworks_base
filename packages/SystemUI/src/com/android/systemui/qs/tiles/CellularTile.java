@@ -181,26 +181,25 @@ public class CellularTile extends QSTileImpl<SignalState> {
         state.activityIn = mobileDataEnabled && cb.activityIn;
         state.activityOut = mobileDataEnabled && cb.activityOut;
         state.expandedAccessibilityClassName = Switch.class.getName();
-        if (cb.noSim) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_no_sim);
-        } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_swap_vert);
-        }
 
         if (cb.noSim) {
             state.state = Tile.STATE_UNAVAILABLE;
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_no_sim);
             state.secondaryLabel = r.getString(R.string.keyguard_missing_sim_message_short);
         } else if (cb.airplaneModeEnabled) {
             state.state = Tile.STATE_UNAVAILABLE;
+            state.icon = ResourceIcon.get(R.drawable.qs_data_icon_off);
             state.secondaryLabel = r.getString(R.string.status_bar_airplane);
         } else if (mobileDataEnabled) {
             state.state = Tile.STATE_ACTIVE;
+            state.icon = ResourceIcon.get(R.drawable.qs_data_icon_on);
             state.secondaryLabel = appendMobileDataType(
                     // Only show carrier name if there are more than 1 subscription
                     cb.multipleSubs ? cb.dataSubscriptionName : "",
                     getMobileDataContentName(cb));
         } else {
             state.state = Tile.STATE_INACTIVE;
+            state.icon = ResourceIcon.get(R.drawable.qs_data_icon_off);
             state.secondaryLabel = r.getString(R.string.cell_data_off);
         }
 
