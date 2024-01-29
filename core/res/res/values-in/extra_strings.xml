@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2024 Kusuma
+     Copyright (C) 2023 Project Lineage Remix Open Source
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,15 +15,11 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Screenshot Tile -->
-    <string name="screenshot_long_press">Sentuh lama untuk screenshot sebagian</string>
+    <!-- App lock -->
+    <string name="unlock_application">Buka kunci <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 
-    <!-- Screenshot Delete Toast -->
-    <string name="delete_screenshot_toast">Screenshot dihapus</string>
-
-    <!-- Network traffic -->
-    <string name="network_traffic_title">Lalu lintas jaringan</string>
-
-    <!-- Face unlock -->
-    <string name="face_unlock_recognizing">Mengenali wajah...</string>
+    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgrouplab_otherSensors">Sensor</string>
+    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permgroupdesc_otherSensors">mengakses data sensor seperti orientasi, pergerakan dan lain-lain</string>
 </resources>
