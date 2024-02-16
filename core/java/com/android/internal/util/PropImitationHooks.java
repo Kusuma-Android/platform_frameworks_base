@@ -50,6 +50,8 @@ public class PropImitationHooks {
 
     private static final String TAG = PropImitationHooks.class.getSimpleName();
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean SPOOF_GMS =
+            SystemProperties.getBoolean("persist.sys.spoof.gms", true);
 
     private static final String sStockFp =
             Resources.getSystem().getString(R.string.config_stockFingerprint);
@@ -83,11 +85,12 @@ public class PropImitationHooks {
         /* Set certified properties for GMSCore
          * Set stock fingerprint for ARCore
          */
-        if (sIsGms) {
-            setCertifiedPropsForGms();
-        } else if (packageName.equals(PACKAGE_GMS)) {
+        if (SPOOF_GMS && packageName.equals(PACKAGE_GMS)) {
             dlog("Setting fresh build date for: " + packageName);
             setPropValue("TIME", String.valueOf(System.currentTimeMillis()));
+            if (sIsGms) {
+                setCertifiedPropsForGms();
+            }
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
