@@ -49,6 +49,8 @@ public abstract class AbstractIpAddressPreferenceController
     private Preference mIpAddress;
     private final ConnectivityManager mCM;
 
+    private boolean mTapped = false;
+
     public AbstractIpAddressPreferenceController(Context context, Lifecycle lifecycle) {
         super(context, lifecycle);
         mCM = context.getSystemService(ConnectivityManager.class);
@@ -77,12 +79,25 @@ public abstract class AbstractIpAddressPreferenceController
     }
 
     @Override
+    public boolean handlePreferenceTreeClick(Preference preference) {
+        if (preference != mIpAddress) return false;
+        mTapped = !mTapped;
+        updateConnectivity();
+        return true;
+    }
+
+    @Override
     protected void updateConnectivity() {
         String ipAddress = getDefaultIpAddresses(mCM);
-        if (ipAddress != null) {
-            mIpAddress.setSummary(ipAddress);
-        } else {
+        if (ipAddress == null) {
             mIpAddress.setSummary(R.string.status_unavailable);
+            mIpAddress.setCopyingEnabled(false);
+        } else if (mTapped) {
+            mIpAddress.setSummary(ipAddress);
+            mIpAddress.setCopyingEnabled(true);
+        } else {
+            mIpAddress.setSummary(R.string.device_info_protected_single_press);
+            mIpAddress.setCopyingEnabled(false);
         }
     }
 
