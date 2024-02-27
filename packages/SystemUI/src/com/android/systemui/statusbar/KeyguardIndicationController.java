@@ -196,8 +196,6 @@ public class KeyguardIndicationController {
     private int mBatteryLevel;
     private boolean mBatteryPresent = true;
     private long mChargingTimeRemaining;
-    private int mChargingCurrent;
-    private double mChargingVoltage;
     private float mTemperature;
     private String mBiometricErrorMessageToShowOnScreenOn;
     private final Set<Integer> mCoExFaceAcquisitionMsgIdsToShow;
@@ -991,16 +989,8 @@ public class KeyguardIndicationController {
         }
 
         String batteryInfo = "";
-        if (mChargingCurrent > 0) {
-            batteryInfo = batteryInfo + (mChargingCurrent / mCurrentDivider) + "mA";
-        }
         if (mChargingWattage > 0) {
-            batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
-                    String.format("%.1f" , (mChargingWattage / mCurrentDivider / 1000)) + "W";
-        }
-        if (mChargingVoltage > 0) {
-            batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
-                    String.format("%.1f", (float) (mChargingVoltage / 1000 / 1000)) + "V";
+            batteryInfo = batteryInfo + (mChargingWattage / mCurrentDivider / 1000) + "W";
         }
         if (mTemperature > 0) {
             batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
@@ -1149,8 +1139,6 @@ public class KeyguardIndicationController {
             mPowerPluggedInDock = status.isPluggedInDock() && isChargingOrFull;
             mPowerPluggedIn = status.isPluggedIn() && isChargingOrFull;
             mPowerCharged = status.isCharged();
-            mChargingCurrent = status.maxChargingCurrent;
-            mChargingVoltage = status.maxChargingVoltage;
             mChargingWattage = status.maxChargingWattage;
             mChargingSpeed = status.getChargingSpeed(mContext);
             mTemperature = status.temperature;
