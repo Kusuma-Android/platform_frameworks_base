@@ -50,6 +50,7 @@ import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.statusbar.CommandQueue;
+import com.android.systemui.statusbar.phone.StatusBarIconController;
 import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.tuner.TunerService.Tunable;
@@ -86,7 +87,7 @@ public class Clock extends TextView implements
     private int mCurrentUserId;
 
     private boolean mClockVisibleByPolicy = true;
-    private boolean mClockVisibleByUser = getVisibility() == View.VISIBLE;
+    private boolean mClockVisibleByUser = true;
 
     private boolean mAttached;
     private boolean mScreenReceiverRegistered;
@@ -198,7 +199,8 @@ public class Clock extends TextView implements
             // The receiver will return immediately if the view does not have a Handler yet.
             mBroadcastDispatcher.registerReceiverWithHandler(mIntentReceiver, filter,
                     Dependency.get(Dependency.TIME_TICK_HANDLER), UserHandle.ALL);
-            Dependency.get(TunerService.class).addTunable(this, CLOCK_SECONDS, CLOCK_STYLE);
+            Dependency.get(TunerService.class).addTunable(this, CLOCK_SECONDS, CLOCK_STYLE,
+                    StatusBarIconController.ICON_HIDE_LIST);
             mCommandQueue.addCallback(this);
             mUserTracker.addCallback(mUserChangedCallback, mContext.getMainExecutor());
             mCurrentUserId = mUserTracker.getUserId();
@@ -287,7 +289,7 @@ public class Clock extends TextView implements
         updateClockVisibility();
     }
 
-    public boolean shouldBeVisible() {
+    private boolean shouldBeVisible() {
         return mClockVisibleByPolicy && mClockVisibleByUser;
     }
 
@@ -345,6 +347,10 @@ public class Clock extends TextView implements
         if (CLOCK_SECONDS.equals(key)) {
             mShowSeconds = TunerService.parseIntegerSwitch(newValue, false);
             updateShowSeconds();
+        } else if (StatusBarIconController.ICON_HIDE_LIST.equals(key)) {
+            setClockVisibleByUser(!StatusBarIconController.getIconHideList(getContext(), newValue)
+                    .contains("clock"));
+            updateClockVisibility();
         } else if (CLOCK_STYLE.equals(key)) {
             mAmPmStyle = TunerService.parseInteger(newValue, AM_PM_STYLE_GONE);
             // Force refresh of dependent variables.
