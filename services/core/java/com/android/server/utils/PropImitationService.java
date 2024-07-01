@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class PropImitationService extends SystemService {
     private static final String TAG = PropImitationService.class.getSimpleName();
-    private static final String API = "https://play.leafos.org";
+    private static final String API = "https://raw.githubusercontent.com/KusumaOS/OTA/lineage-20.0/properties.json";
 
     private static final String DATA_FILE = "gms_certified_props.json";
 
